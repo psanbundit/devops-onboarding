@@ -8,6 +8,7 @@ pipeline {
         SCRIPTS_PATH="${PROJECT_PATH}/scripts"
         WEB_PATH="${PROJECT_PATH}/web"
         TEST_WEB_PATH="${PROJECT_PATH}/e2e-web"
+        TEST_WEB_REPORT_PATH="${TEST_WEB_PATH}/cypress/cucumber-json"
         DEV="dev"
         ALPHA="alpha"
         PREPROD="preprod"
@@ -28,8 +29,9 @@ pipeline {
             steps {
                 dir("${TEST_WEB_PATH}") {
                    sh """
-                        yarn && yarn test
+                        yarn && yarn test && yarn generate-report
                     """
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: "${TEST_WEB_REPORT_PATH}", reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'Cypress report', useWrapperFileDirectly: true])
                 }
             }
             post {
@@ -53,3 +55,5 @@ pipeline {
         }
     }
 }
+
+// cypress/cucumber-json/index.html
