@@ -35,8 +35,9 @@ pipeline {
             post {
                 always {
                     dir("${WEB_PATH}") {
+                        echo "Killing web environment DEV"
                         sh """ 
-                            echo "Killing server" && kill $(lsof -t -i:3000)
+                            kill $(lsof -t -i:3000)
                         """
                     }
                 }
