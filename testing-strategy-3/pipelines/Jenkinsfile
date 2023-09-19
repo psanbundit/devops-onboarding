@@ -19,7 +19,7 @@ pipeline {
            steps {
                 dir("${WEB_PATH}") {
                     sh """
-                        npm install && npm run start
+                        ls -al && npm install && npm run start
                     """
                 }
             }
