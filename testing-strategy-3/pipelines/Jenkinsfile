@@ -4,8 +4,10 @@ pipeline {
     tools {nodejs "NodeJS"}
 
     environment {
-        PROJECT_PATH="${env.JENKINS_HOME}/workspace/OnBoardingPart3/testing-strategy-3"
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3"
         SCRIPTS_PATH="${PROJECT_PATH}/scripts"
+        WEB_PATH="${PROJECT_PATH}/web"
+        TEST_WEB_PATH="${PROJECT_PATH}/e2e-web"
         DEV="dev"
         ALPHA="alpha"
         PREPROD="preprod"
@@ -13,20 +15,20 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Build and run web environment DEV') {
            steps {
-                dir("${SCRIPTS_PATH}") {
+                dir("${WEB_PATH}") {
                     sh """
-                    echo "Build"
+                        npm install && npm run start
                     """
                 }
             }
         }
-        stage('Test environment DEV') {
+        stage('Test E2E web environment DEV') {
             steps {
-                dir("${SCRIPTS_PATH}") {
+                dir("${TEST_WEB_PATH}") {
                    sh """
-                    echo "Test"
+                        npm install && npm run test
                     """
                 }
             }

@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "open": "$(npm bin)/cypress open",
-    "merge": "$(npm bin)/cucumber-json-merge -d cypress/cucumber-json -o cucumber_report.json -r ",
-    "test": "$(npm bin)/cypress-tags run -e TAGS='not @skip and not @draft'",
-    "test:chrome": "$(npm bin)/cypress run --browser chrome --headed",
-    "test:focus": "$(npm bin)/cypress-tags run --browser chrome --headed -e TAGS='@focus and not @skip'",
-    "lint": "$(npm bin)/eslint '**/*.js'",
-    "lint-fix": "$(npm bin)/eslint '**/*.js' --fix",
+    "open": "cypress open",
+    "merge": "cucumber-json-merge -d cypress/cucumber-json -o cucumber_report.json -r ",
+    "test": "cypress-tags run -e TAGS='not @skip and not @draft'",
+    "test:chrome": "cypress run --browser chrome --headed",
+    "test:focus": "cypress-tags run --browser chrome --headed -e TAGS='@focus and not @skip'",
+    "lint": "eslint '**/*.js'",
+    "lint-fix": "eslint '**/*.js' --fix",
     "generate-report": "node generate-multiple-report.js"
   },
   "keywords": [
@@ -26,7 +26,9 @@
     "cucumber-json-merge": "0.0.7",
     "cypress": "8.4.0",
     "cypress-cucumber-preprocessor": "^4.2.0",
+    "cypress-tags": "^1.1.2",
     "dayjs": "^1.10.7",
+    "global": "^4.4.0",
     "jwt-decode": "^3.1.2"
   },
   "devDependencies": {
