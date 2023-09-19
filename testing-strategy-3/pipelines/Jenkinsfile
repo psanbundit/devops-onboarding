@@ -36,7 +36,7 @@ pipeline {
                 always {
                     dir("${WEB_PATH}") {
                         sh """ 
-                            
+                            echo "Killing server" && kill -9 $(lsof -t -i:3000)
                         """
                     }
                 }
