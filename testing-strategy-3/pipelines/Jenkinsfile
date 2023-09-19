@@ -36,7 +36,7 @@ pipeline {
                 always {
                     dir("${WEB_PATH}") {
                         echo "Killing web environment DEV"
-                        sh """ 
+                        sh """
                             kill $(lsof -t -i:3000)
                         """
                     }
